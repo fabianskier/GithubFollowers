@@ -15,11 +15,36 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 
         guard let windowScene = (scene as? UIWindowScene) else { return }
+        
+        
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        window?.rootViewController = ViewController()
+        window?.rootViewController = createTabBarController()
         window?.makeKeyAndVisible()
         
+    }
+    
+    func createNavigationController(viewController: UIViewController, title: String, systemItem: UITabBarItem.SystemItem, tag: Int) -> UINavigationController {
+        let navigationController = viewController
+        navigationController.title = title
+        navigationController.tabBarItem = UITabBarItem(tabBarSystemItem: systemItem, tag: tag)
+        
+        return UINavigationController(rootViewController: navigationController)
+    }
+    
+    func createTabBarController() -> UITabBarController {
+        let tabBarController = UITabBarController()
+        UITabBar.appearance().tintColor = .systemGreen
+        tabBarController.viewControllers = [createNavigationController(viewController: SearchViewController(),
+                                                                       title: "Search",
+                                                                       systemItem: .search,
+                                                                       tag: 0),
+                                            createNavigationController(viewController: FavoritesListViewController(),
+                                                                       title: "Favorites",
+                                                                       systemItem: .favorites,
+                                                                       tag: 1)]
+        
+        return tabBarController
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
