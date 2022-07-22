@@ -15,6 +15,7 @@
 		075A09C9288A06E60022B872 /* FavoritesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075A09C8288A06E60022B872 /* FavoritesListViewController.swift */; };
 		0769C578288A0FEE00C55B67 /* GFButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0769C577288A0FEE00C55B67 /* GFButton.swift */; };
 		0769C57A288B2BC300C55B67 /* GFTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0769C579288B2BC300C55B67 /* GFTextField.swift */; };
+		0769C57E288B36DE00C55B67 /* GFImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0769C57D288B36DE00C55B67 /* GFImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		075A09C8288A06E60022B872 /* FavoritesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesListViewController.swift; sourceTree = "<group>"; };
 		0769C577288A0FEE00C55B67 /* GFButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFButton.swift; sourceTree = "<group>"; };
 		0769C579288B2BC300C55B67 /* GFTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFTextField.swift; sourceTree = "<group>"; };
+		0769C57D288B36DE00C55B67 /* GFImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				075A09C8288A06E60022B872 /* FavoritesListViewController.swift */,
 				0769C577288A0FEE00C55B67 /* GFButton.swift */,
 				0769C579288B2BC300C55B67 /* GFTextField.swift */,
+				0769C57D288B36DE00C55B67 /* GFImageView.swift */,
 			);
 			path = GithubFollowers;
 			sourceTree = "<group>";
@@ -149,6 +152,7 @@
 				075A09B32889FEB40022B872 /* AppDelegate.swift in Sources */,
 				075A09C9288A06E60022B872 /* FavoritesListViewController.swift in Sources */,
 				075A09B52889FEB40022B872 /* SceneDelegate.swift in Sources */,
+				0769C57E288B36DE00C55B67 /* GFImageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
