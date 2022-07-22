@@ -16,12 +16,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
-        
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
         window?.rootViewController = createTabBarController()
         window?.makeKeyAndVisible()
         
+        configureNavigationBar()
     }
     
     func createNavigationController(viewController: UIViewController, title: String, systemItem: UITabBarItem.SystemItem, tag: Int) -> UINavigationController {
@@ -45,6 +45,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                                                                        tag: 1)]
         
         return tabBarController
+    }
+    
+    func configureNavigationBar() {
+        UINavigationBar.appearance().tintColor = .systemGreen
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

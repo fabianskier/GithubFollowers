@@ -12,11 +12,14 @@ class SearchViewController: UIViewController {
     let logoImageView = GFImageView(named: "gh-logo")
     let usernameTextField = GFTextField()
     let followersButton = GFButton(backgroundColor: .systemGreen, title: "Get Followers")
+    
+    var isUsernameEntered: Bool { return !usernameTextField.text!.isEmpty }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         layout()
+        dismissKeyboardTapGesture()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -45,5 +48,29 @@ class SearchViewController: UIViewController {
             followersButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -50),
             followersButton.heightAnchor.constraint(equalToConstant: 50),
         ])
+        
+        usernameTextField.delegate = self
+        followersButton.addTarget(self, action: #selector(pushFollowerListViewController), for: .touchUpInside)
+        
+    }
+    
+    func dismissKeyboardTapGesture() {
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func pushFollowerListViewController() {
+        guard isUsernameEntered else { return }
+        let followerListViewController = FollowerListViewController()
+        followerListViewController.username = usernameTextField.text
+        followerListViewController.title = usernameTextField.text
+        navigationController?.pushViewController(followerListViewController, animated: true)
+    }
+}
+
+extension SearchViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        pushFollowerListViewController()
+        return true
     }
 }
