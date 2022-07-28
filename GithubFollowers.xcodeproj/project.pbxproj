@@ -30,6 +30,7 @@
 		0769C59F288EF90000C55B67 /* FollowerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0769C59E288EF90000C55B67 /* FollowerCollectionViewCell.swift */; };
 		0769C5A1288EFA6700C55B67 /* GFAvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0769C5A0288EFA6700C55B67 /* GFAvatarImageView.swift */; };
 		0769C5A3288F9C6000C55B67 /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0769C5A2288F9C6000C55B67 /* UIHelper.swift */; };
+		07F771AD28934E5500F7269A /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F771AC28934E5500F7269A /* UserInfoViewController.swift */; };
 		07FCC08128919C2800247F93 /* GFEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FCC08028919C2800247F93 /* GFEmptyStateView.swift */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +60,7 @@
 		0769C59E288EF90000C55B67 /* FollowerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerCollectionViewCell.swift; sourceTree = "<group>"; };
 		0769C5A0288EFA6700C55B67 /* GFAvatarImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFAvatarImageView.swift; sourceTree = "<group>"; };
 		0769C5A2288F9C6000C55B67 /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
+		07F771AC28934E5500F7269A /* UserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
 		07FCC08028919C2800247F93 /* GFEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFEmptyStateView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -110,6 +112,7 @@
 				075A09C6288A06B90022B872 /* SearchViewController.swift */,
 				075A09C8288A06E60022B872 /* FavoritesListViewController.swift */,
 				0769C57F288B56A700C55B67 /* FollowerListViewController.swift */,
+				07F771AC28934E5500F7269A /* UserInfoViewController.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 				0769C578288A0FEE00C55B67 /* GFButton.swift in Sources */,
 				075A09C7288A06B90022B872 /* SearchViewController.swift in Sources */,
 				075A09B32889FEB40022B872 /* AppDelegate.swift in Sources */,
+				07F771AD28934E5500F7269A /* UserInfoViewController.swift in Sources */,
 				0769C59F288EF90000C55B67 /* FollowerCollectionViewCell.swift in Sources */,
 				0769C599288CEC6A00C55B67 /* NetworkManager.swift in Sources */,
 				0769C59C288E32F200C55B67 /* GFError.swift in Sources */,
