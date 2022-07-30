@@ -43,8 +43,6 @@ class UserInfoViewController: UIViewController {
             ])
         }
         
-        
-        
         NSLayoutConstraint.activate([
             headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             headerView.heightAnchor.constraint(equalToConstant: 180),
