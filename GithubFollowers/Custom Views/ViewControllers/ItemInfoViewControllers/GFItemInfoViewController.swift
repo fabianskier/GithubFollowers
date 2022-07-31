@@ -13,7 +13,18 @@ class GFItemInfoViewController: UIViewController {
     let itemInfoViewOne = GFItemInfoView()
     let itemInfoViewTwo = GFItemInfoView()
     let actionButton = GFButton()
-
+    
+    var user: User!
+    
+    init(user: User) {
+        super.init(nibName: nil, bundle: nil)
+        self.user = user
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureBackgroundView()
@@ -24,6 +35,14 @@ class GFItemInfoViewController: UIViewController {
     private func configureBackgroundView() {
         view.layer.cornerRadius = 18
         view.backgroundColor = .secondarySystemBackground
+    }
+    
+    private func configureStackView() {
+        stackView.axis = .horizontal
+        stackView.distribution = .equalSpacing
+        
+        stackView.addArrangedSubview(itemInfoViewOne)
+        stackView.addArrangedSubview(itemInfoViewTwo)
     }
     
     private func layout() {
@@ -42,15 +61,8 @@ class GFItemInfoViewController: UIViewController {
             actionButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -padding),
             actionButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
             actionButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-            actionButton.heightAnchor.constraint(equalToConstant: 44),
+            actionButton.heightAnchor.constraint(equalToConstant: 44)
         ])
     }
 
-    private func configureStackView() {
-        stackView.axis = .horizontal
-        stackView.distribution = .equalSpacing
-        
-        stackView.addArrangedSubview(itemInfoViewOne)
-        stackView.addArrangedSubview(itemInfoViewTwo)
-    }
 }
