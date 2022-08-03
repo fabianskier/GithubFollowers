@@ -119,16 +119,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "3B31FE11-28C1-4E86-8A14-5F26087CDE67"
-            shouldBeEnabled = "Yes"
+            uuid = "E6A90F39-24E0-4D65-80B6-24EEABBFDD52"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GithubFollowers/Screens/FollowerListViewController.swift"
+            filePath = "GithubFollowers/Custom Views/ViewControllers/ItemInfoViewControllers/GFItemInfoViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
-            landmarkName = "getFollowers(username:page:per_page:)"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
