@@ -30,9 +30,7 @@ class SearchViewController: UIViewController {
     }
 
     func layout() {
-        view.addSubview(logoImageView)
-        view.addSubview(usernameTextField)
-        view.addSubview(followersButton)
+        view.addSubviews(logoImageView, usernameTextField, followersButton)
         
         let topConstraintConstant: CGFloat = DeviceTypes.isiPhoneSE || DeviceTypes.isiPhone8Zoomed ? 20 : 80
         
