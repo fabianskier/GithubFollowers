@@ -9,7 +9,7 @@ import UIKit
 
 class SearchViewController: UIViewController {
     
-    let logoImageView = GFImageView(named: Images.ghLogo)
+    let logoImageView = Images.ghLogo
     let usernameTextField = GFTextField()
     let followersButton = GFButton(backgroundColor: .systemGreen, title: "Get Followers")
     var logoImageViewTopConstraint: NSLayoutConstraint!
