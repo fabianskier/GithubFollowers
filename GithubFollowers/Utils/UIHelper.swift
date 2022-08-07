@@ -7,7 +7,12 @@
 
 import UIKit
 
-struct UIHelper {
+// we use enum instead of struct,
+// because struct allow us initialize an empty UIHelper
+// and we don't want to do that
+//
+// let helper = UIHelper() => empty initialization
+enum UIHelper {
     
     static func createThreeColumnFlowLayout(in view: UIView) -> UICollectionViewFlowLayout {
         let width = view.bounds.width
