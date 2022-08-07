@@ -34,24 +34,19 @@ class GFAlertViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.black.withAlphaComponent(0.75)
+        view.addSubviews(containerView, titleLabel, actionButton, messageLabel)
         layout()
     }
 
     func layout() {
-        // container view
-        view.addSubview(containerView)
-        
         // title label
-        containerView.addSubview(titleLabel)
         titleLabel.text = alertTitleLabel ?? "Something went wrong"
         
         // action button
-        containerView.addSubview(actionButton)
         actionButton.setTitle(alertActionButton ?? "Ok", for: .normal)
         actionButton.addTarget(self, action: #selector(dismissViewController), for: .touchUpInside)
         
         // message label
-        containerView.addSubview(messageLabel)
         messageLabel.text = alertMessageLabel ?? "Unable to complete request"
         messageLabel.numberOfLines = 4
         
