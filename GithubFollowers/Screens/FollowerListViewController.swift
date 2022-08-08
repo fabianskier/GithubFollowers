@@ -80,37 +80,40 @@ class FollowerListViewController: GFDataLoadingViewController {
                 let followers = try await NetworkManager.shared.getFollowers(for: username, page: page, per_page: per_page)
                 updateUI(with: followers)
                 dismissLoadingView()
+                isLoadingMoreFollowers = false
             } catch {
                 if let gfError = error as? GFError {
                     presentGFAlertOnMainThread(title: "Error", message: gfError.rawValue, button: "Ok")
                 } else {
                     presentDefaultGFAlert()
                 }
+                
+                isLoadingMoreFollowers = false
                 dismissLoadingView()
             }
         }
     }
     
-//    Without async await feature
-//
-//    func getFollowers(username: String, page: Int, per_page: Int) {
-//        showLoadingView()
-//        isLoadingMoreFollowers = true
-//
-//        NetworkManager.shared.getFollowers(for: username, page: page, per_page: per_page) { [weak self] result in
-//            guard let self = self else { return }
-//            self.dismissLoadingView()
-//
-//            switch result {
-//            case .success(let followers):
-//                self.updateUI(with: followers)
-//            case .failure(let error):
-//                self.presentGFAlertOnMainThread(title: "Error", message: error.rawValue, button: "Ok")
-//            }
-//
-//            self.isLoadingMoreFollowers = false
-//        }
-//    }
+    //    Without async await feature
+    //
+    //    func getFollowers(username: String, page: Int, per_page: Int) {
+    //        showLoadingView()
+    //        isLoadingMoreFollowers = true
+    //
+    //        NetworkManager.shared.getFollowers(for: username, page: page, per_page: per_page) { [weak self] result in
+    //            guard let self = self else { return }
+    //            self.dismissLoadingView()
+    //
+    //            switch result {
+    //            case .success(let followers):
+    //                self.updateUI(with: followers)
+    //            case .failure(let error):
+    //                self.presentGFAlertOnMainThread(title: "Error", message: error.rawValue, button: "Ok")
+    //            }
+    //
+    //            self.isLoadingMoreFollowers = false
+    //        }
+    //    }
     
     func updateUI(with followers: [Follower]) {
         if followers.count < per_page { self.hasMoreFollowers = false }
@@ -143,18 +146,39 @@ class FollowerListViewController: GFDataLoadingViewController {
     @objc func addButtonTapped() {
         showLoadingView()
         
-        NetworkManager.shared.getUserInfo(for: username) { [weak self] result in
-            guard let self = self else { return }
-            self.dismissLoadingView()
-            
-            switch result {
-            case .success(let user):
-                self.addUserToFavorites(user: user)
-            case .failure(let error):
-                self.presentGFAlertOnMainThread(title: "Something went wrong", message: error.rawValue, button: "Ok")
+        Task {
+            do {
+                let user = try await NetworkManager.shared.getUserInfo(for: username)
+                addUserToFavorites(user: user)
+                dismissLoadingView()
+            } catch {
+                if let gfError = error as? GFError {
+                    presentGFAlertOnMainThread(title: "Error", message: gfError.rawValue, button: "Ok")
+                } else {
+                    presentDefaultGFAlert()
+                }
+                dismissLoadingView()
             }
         }
     }
+    
+    //    Without async await feature
+    //
+    //    @objc func addButtonTapped() {
+    //        showLoadingView()
+    //
+    //        NetworkManager.shared.getUserInfo(for: username) { [weak self] result in
+    //            guard let self = self else { return }
+    //            self.dismissLoadingView()
+    //
+    //            switch result {
+    //            case .success(let user):
+    //                self.addUserToFavorites(user: user)
+    //            case .failure(let error):
+    //                self.presentGFAlertOnMainThread(title: "Something went wrong", message: error.rawValue, button: "Ok")
+    //            }
+    //        }
+    //    }
     
     func addUserToFavorites(user: User) {
         let favorite = Follower(login: user.login, avatarUrl: user.avatarUrl)
