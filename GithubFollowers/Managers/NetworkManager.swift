@@ -14,44 +14,67 @@ class NetworkManager {
     private static let baseURL  = "https://api.github.com"
     private static let usersURL = baseURL + "/users"
     let cache                   = NSCache<NSString, UIImage>()
+    let decoder                 = JSONDecoder()
     
-    private init() {}
+    private init() {
+        decoder.keyDecodingStrategy     = .convertFromSnakeCase
+        decoder.dateDecodingStrategy    = .iso8601
+    }
     
-    func getFollowers(for username: String, page: Int, per_page: Int = 100, completed: @escaping (Result<[Follower], GFError>) -> Void) {
+    func getFollowers(for username: String, page: Int, per_page: Int = 100) async throws -> [Follower] {
         let endpoint = NetworkManager.usersURL + "/\(username)/followers?per_page=\(per_page)&page=\(page)"
         
-        guard let url = URL(string: endpoint) else {
-            completed(.failure(.invalidUsername))
-            return
-        }
+        guard let url = URL(string: endpoint) else { throw GFError.invalidUsername }
         
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            if let _ = error {
-                completed(.failure(.unableToComplete))
-            }
-            
-            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else  {
-                completed(.failure(.invalidResponse))
-                return
-            }
-            
-            guard let data = data else {
-                completed(.failure(.invalidData))
-                return
-            }
-            
-            do {
-                let decoder                 = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
-                let followers               = try decoder.decode([Follower].self, from: data)
-                completed(.success(followers))
-            } catch {
-                completed(.failure(.invalidData))
-            }
-        }
+        let (data, response) = try await URLSession.shared.data(from: url)
         
-        task.resume()
+        
+        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else { throw GFError.invalidResponse }
+        
+        do {
+            return try decoder.decode([Follower].self, from: data)
+        } catch {
+            throw GFError.invalidData
+        }
     }
+    
+    //    Without async await feature
+    //
+    //    func getFollowers(for username: String, page: Int, per_page: Int = 100, completed: @escaping (Result<[Follower], GFError>) -> Void) {
+    //        let endpoint = NetworkManager.usersURL + "/\(username)/followers?per_page=\(per_page)&page=\(page)"
+    //
+    //        guard let url = URL(string: endpoint) else {
+    //            completed(.failure(.invalidUsername))
+    //            return
+    //        }
+    //
+    //        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+    //            if let _ = error {
+    //                completed(.failure(.unableToComplete))
+    //            }
+    //
+    //            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else  {
+    //                completed(.failure(.invalidResponse))
+    //                return
+    //            }
+    //
+    //            guard let data = data else {
+    //                completed(.failure(.invalidData))
+    //                return
+    //            }
+    //
+    //            do {
+    //                let decoder                 = JSONDecoder()
+    //                decoder.keyDecodingStrategy = .convertFromSnakeCase
+    //                let followers               = try decoder.decode([Follower].self, from: data)
+    //                completed(.success(followers))
+    //            } catch {
+    //                completed(.failure(.invalidData))
+    //            }
+    //        }
+    //
+    //        task.resume()
+    //    }
     
     func getUserInfo(for username: String, completed: @escaping (Result<User, GFError>) -> Void) {
         let endpoint = NetworkManager.usersURL + "/\(username)"
