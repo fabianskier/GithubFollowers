@@ -9,10 +9,10 @@ import UIKit
 
 class GFAlertViewController: UIViewController {
     
-    let containerView = GFAlertUIView()
-    let titleLabel = GFTitleLabel(textAlignment: .center, fontSize: 20)
-    let messageLabel = GFBodyLabel(textAlignment: .center)
-    let actionButton = GFButton(backgroundColor: .systemPink, title: "Ok")
+    let containerView   = GFAlertUIView()
+    let titleLabel      = GFTitleLabel(textAlignment: .center, fontSize: 20)
+    let messageLabel    = GFBodyLabel(textAlignment: .center)
+    let actionButton    = GFButton(backgroundColor: .systemPink, title: "Ok")
     
     var alertTitleLabel: String?
     var alertMessageLabel: String?
@@ -22,14 +22,12 @@ class GFAlertViewController: UIViewController {
     
     init(title: String, message: String, button: String) {
         super.init(nibName: nil, bundle: nil)
-        self.alertTitleLabel = title
-        self.alertMessageLabel = message
-        self.alertActionButton = button
+        self.alertTitleLabel    = title
+        self.alertMessageLabel  = message
+        self.alertActionButton  = button
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,18 +37,14 @@ class GFAlertViewController: UIViewController {
     }
 
     func layout() {
-        // title label
         titleLabel.text = alertTitleLabel ?? "Something went wrong"
         
-        // action button
         actionButton.setTitle(alertActionButton ?? "Ok", for: .normal)
         actionButton.addTarget(self, action: #selector(dismissViewController), for: .touchUpInside)
         
-        // message label
-        messageLabel.text = alertMessageLabel ?? "Unable to complete request"
-        messageLabel.numberOfLines = 4
+        messageLabel.text           = alertMessageLabel ?? "Unable to complete request"
+        messageLabel.numberOfLines  = 4
         
-        // constraints
         NSLayoutConstraint.activate([
             containerView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             containerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),

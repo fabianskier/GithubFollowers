@@ -14,17 +14,17 @@ class GFTabBarController: UITabBarController {
     }
     
     func createNavigationController(viewController: UIViewController, title: String, systemItem: UITabBarItem.SystemItem, tag: Int) -> UINavigationController {
-        let navigationController = viewController
-        navigationController.title = title
+        let navigationController        = viewController
+        navigationController.title      = title
         navigationController.tabBarItem = UITabBarItem(tabBarSystemItem: systemItem, tag: tag)
         
         return UINavigationController(rootViewController: navigationController)
     }
     
     func createTabBarController() -> UITabBarController {
-        let tabBarController = UITabBarController()
-        UITabBar.appearance().tintColor = .systemGreen
-        tabBarController.viewControllers = [createNavigationController(viewController: SearchViewController(),
+        let tabBarController                = UITabBarController()
+        UITabBar.appearance().tintColor     = .systemGreen
+        tabBarController.viewControllers    = [createNavigationController(viewController: SearchViewController(),
                                                                        title: "Search",
                                                                        systemItem: .search,
                                                                        tag: 0),
