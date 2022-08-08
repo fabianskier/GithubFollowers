@@ -9,13 +9,13 @@ import Foundation
 import UIKit
 
 class NetworkManager {
-    static let shared = NetworkManager()
+    
+    static let shared           = NetworkManager()
+    private static let baseURL  = "https://api.github.com"
+    private static let usersURL = baseURL + "/users"
+    let cache                   = NSCache<NSString, UIImage>()
     
     private init() {}
-    
-    private static let baseURL = "https://api.github.com"
-    private static let usersURL = baseURL + "/users"
-    let cache = NSCache<NSString, UIImage>()
     
     func getFollowers(for username: String, page: Int, per_page: Int = 100, completed: @escaping (Result<[Follower], GFError>) -> Void) {
         let endpoint = NetworkManager.usersURL + "/\(username)/followers?per_page=\(per_page)&page=\(page)"
@@ -41,9 +41,9 @@ class NetworkManager {
             }
             
             do {
-                let decoder = JSONDecoder()
+                let decoder                 = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
-                let followers = try decoder.decode([Follower].self, from: data)
+                let followers               = try decoder.decode([Follower].self, from: data)
                 completed(.success(followers))
             } catch {
                 completed(.failure(.invalidData))
@@ -77,10 +77,10 @@ class NetworkManager {
             }
             
             do {
-                let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
-                decoder.dateDecodingStrategy = .iso8601
-                let user = try decoder.decode(User.self, from: data)
+                let decoder                     = JSONDecoder()
+                decoder.keyDecodingStrategy     = .convertFromSnakeCase
+                decoder.dateDecodingStrategy    = .iso8601
+                let user                        = try decoder.decode(User.self, from: data)
                 completed(.success(user))
             } catch {
                 completed(.failure(.invalidData))

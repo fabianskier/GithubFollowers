@@ -14,9 +14,7 @@ class GFImageView: UIImageView {
         configure()
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
     init(named: String) {
         super.init(frame: .zero)

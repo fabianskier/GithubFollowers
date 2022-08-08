@@ -13,12 +13,12 @@ protocol UserInfoViewControllerDelegate: AnyObject {
 
 class UserInfoViewController: GFDataLoadingViewController {
     
-    let scrollView = UIScrollView()
-    let contentView = UIView()
-    let headerView = UIView()
-    let itemViewOne = UIView()
-    let itemViewTwo = UIView()
-    let dateLabel = GFBodyLabel(textAlignment: .center)
+    let scrollView          = UIScrollView()
+    let contentView         = UIView()
+    let headerView          = UIView()
+    let itemViewOne         = UIView()
+    let itemViewTwo         = UIView()
+    let dateLabel           = GFBodyLabel(textAlignment: .center)
     
     var itemViews: [UIView] = []
     var username: String!
@@ -33,20 +33,22 @@ class UserInfoViewController: GFDataLoadingViewController {
     }
     
     func configureViewController() {
-        view.backgroundColor = .systemBackground
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissViewController))
-        navigationItem.rightBarButtonItem = doneButton
+        view.backgroundColor                = .systemBackground
+        
+        let doneButton                      = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissViewController))
+        navigationItem.rightBarButtonItem   = doneButton
     }
     
     func configureUIElements(with user: User) {
+        self.add(childViewController: GFUserInfoHeaderViewController(user: user), to: self.headerView)
         self.add(childViewController: GFRepoItemViewController(user: user, delegate: self), to: self.itemViewOne)
-        self.add(childViewController: GFFollowerItemViewController(user: user, delegate: self), to: self.headerView)
-        self.add(childViewController: GFUserInfoHeaderViewController(user: user), to: self.itemViewTwo)
+        self.add(childViewController: GFFollowerItemViewController(user: user, delegate: self), to: self.itemViewTwo)
+        
         self.dateLabel.text = "Github since \(user.createdAt.convertToMonthYearFormat())"
     }
     
     func layoutUI() {
-        let padding: CGFloat = 20
+        let padding: CGFloat    = 20
         let itemHeight: CGFloat = 140
         
         itemViews = [headerView, itemViewOne, itemViewTwo, dateLabel]

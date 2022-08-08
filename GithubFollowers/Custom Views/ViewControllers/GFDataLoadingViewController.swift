@@ -15,8 +15,8 @@ class GFDataLoadingViewController: UIViewController {
         containerView = UIView(frame: view.bounds)
         view.addSubview(containerView)
         
-        containerView.backgroundColor = .systemBackground
-        containerView.alpha = 0
+        containerView.backgroundColor   = .systemBackground
+        containerView.alpha             = 0
         
         UIView.animate(withDuration: 0.25) { self.containerView.alpha = 0.8 }
         
@@ -41,8 +41,8 @@ class GFDataLoadingViewController: UIViewController {
     }
     
     func showEmptyStateView(with message: String, in view: UIView) {
-        let emptyStateView = GFEmptyStateView(message: message)
-        emptyStateView.frame = view.bounds
+        let emptyStateView      = GFEmptyStateView(message: message)
+        emptyStateView.frame    = view.bounds
         view.addSubview(emptyStateView)
     }
 
